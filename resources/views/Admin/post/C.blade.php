@@ -1,0 +1,30 @@
+@extends('Layout.Site')
+@section('content')
+    <form action="{{route('admin.post.store')}}" method="post">
+        @csrf
+        <div class="mb-3">
+            <label for="title_post" class="form-label">عنوان پست </label>
+            <input name="title" type="text" class="form-control" id="title_post" >
+        </div>
+        <div class="mb-3">
+            <label for="category_group" class="form-label"> دسته بندی پست </label>
+            <select name="category"  class="form-select" aria-label="Default select example">
+                <option selected>لیست دسته بندی ها را باز کنید</option>
+                @foreach($categories as $category)
+
+              <option value="{{$category->id}}">{{$category->title}}</option>
+
+                @endforeach
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="description" class="form-label" >توضیحات </label>
+            <textarea name="description" class="form-control" id="description" rows="3"></textarea>
+        </div>
+        <div>
+            <button class="btn btn-primary">ذخیره پست</button>
+        </div>
+    </form>
+
+@endsection
